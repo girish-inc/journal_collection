@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class MyClass {
+public class JournalController {
 
     private Map<Long, JournalEntry> journalEntries = new HashMap<>();
     @Autowired
@@ -31,5 +31,14 @@ public class MyClass {
     @GetMapping("/getJournalById/{id}")
     public JournalEntry getJournalById(@PathVariable Long id) {
         return journalService.getJournalById(id);
+    }
+    @DeleteMapping("/deleteJournalById/{id}")
+    public boolean deleteJournalById(@PathVariable Long id) {
+        journalService.deleteJournalById(id);
+       return true;
+    }
+    @PutMapping("/updateJournalById/{id}")
+    public JournalEntry updateJournalById(@PathVariable Long id, @RequestBody JournalEntry journalEntry) {
+        return journalService.updateJournalById(id,journalEntry);
     }
 }
